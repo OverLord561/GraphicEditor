@@ -36,30 +36,29 @@
             this.toolStripLine = new System.Windows.Forms.ToolStripButton();
             this.toolStripRectangle = new System.Windows.Forms.ToolStripButton();
             this.toolStripCircle = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.picSelectedColorOfBackground = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.labelThickness = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.picSelectedColor = new System.Windows.Forms.PictureBox();
-            this.rgbB = new System.Windows.Forms.Label();
-            this.rgbG = new System.Windows.Forms.Label();
-            this.rgbR = new System.Windows.Forms.Label();
-            this.rgbA = new System.Windows.Forms.Label();
-            this.l4 = new System.Windows.Forms.Label();
-            this.l3 = new System.Windows.Forms.Label();
-            this.l2 = new System.Windows.Forms.Label();
-            this.l1 = new System.Windows.Forms.Label();
+            this.picSelectedColorOfLine = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.operationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jPEGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -67,16 +66,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paintBox)).BeginInit();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectedColorOfBackground)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSelectedColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectedColorOfLine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -90,7 +94,7 @@
             // toolStripContainer1.LeftToolStripPanel
             // 
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip2);
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 64);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 27);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.Size = new System.Drawing.Size(592, 295);
             this.toolStripContainer1.TabIndex = 1;
@@ -162,46 +166,68 @@
             this.toolStripCircle.Text = "Circle";
             this.toolStripCircle.Click += new System.EventHandler(this.toolStripCircle_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(142, 61);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(127, 127);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox3);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.picSelectedColorOfBackground);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.labelThickness);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.trackBar1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.picSelectedColor);
-            this.groupBox1.Controls.Add(this.rgbB);
-            this.groupBox1.Controls.Add(this.rgbG);
-            this.groupBox1.Controls.Add(this.rgbR);
-            this.groupBox1.Controls.Add(this.rgbA);
-            this.groupBox1.Controls.Add(this.l4);
-            this.groupBox1.Controls.Add(this.l3);
-            this.groupBox1.Controls.Add(this.l2);
-            this.groupBox1.Controls.Add(this.l1);
+            this.groupBox1.Controls.Add(this.picSelectedColorOfLine);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.Location = new System.Drawing.Point(598, 64);
+            this.groupBox1.Location = new System.Drawing.Point(743, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 295);
+            this.groupBox1.Size = new System.Drawing.Size(325, 295);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(252, 80);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox3.TabIndex = 20;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(240, 16);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Click to choose the color of filling:";
+            // 
+            // picSelectedColorOfBackground
+            // 
+            this.picSelectedColorOfBackground.Location = new System.Drawing.Point(199, 173);
+            this.picSelectedColorOfBackground.Name = "picSelectedColorOfBackground";
+            this.picSelectedColorOfBackground.Size = new System.Drawing.Size(46, 39);
+            this.picSelectedColorOfBackground.TabIndex = 18;
+            this.picSelectedColorOfBackground.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(170, 154);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(107, 16);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Color of filling:";
             // 
             // labelThickness
             // 
             this.labelThickness.AutoSize = true;
             this.labelThickness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelThickness.Location = new System.Drawing.Point(110, 252);
+            this.labelThickness.Location = new System.Drawing.Point(121, 228);
             this.labelThickness.Name = "labelThickness";
             this.labelThickness.Size = new System.Drawing.Size(15, 16);
             this.labelThickness.TabIndex = 16;
@@ -210,7 +236,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 250);
+            this.label3.Location = new System.Drawing.Point(31, 226);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 16);
             this.label3.TabIndex = 15;
@@ -218,7 +244,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(142, 250);
+            this.trackBar1.Location = new System.Drawing.Point(153, 226);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(127, 45);
             this.trackBar1.TabIndex = 14;
@@ -227,101 +253,44 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 212);
+            this.label2.Location = new System.Drawing.Point(31, 154);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 16);
+            this.label2.Size = new System.Drawing.Size(95, 16);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Selected color:";
+            this.label2.Text = "Color of line:";
             // 
-            // picSelectedColor
+            // picSelectedColorOfLine
             // 
-            this.picSelectedColor.Location = new System.Drawing.Point(142, 194);
-            this.picSelectedColor.Name = "picSelectedColor";
-            this.picSelectedColor.Size = new System.Drawing.Size(127, 50);
-            this.picSelectedColor.TabIndex = 12;
-            this.picSelectedColor.TabStop = false;
-            // 
-            // rgbB
-            // 
-            this.rgbB.AutoSize = true;
-            this.rgbB.Location = new System.Drawing.Point(49, 160);
-            this.rgbB.Name = "rgbB";
-            this.rgbB.Size = new System.Drawing.Size(0, 16);
-            this.rgbB.TabIndex = 11;
-            // 
-            // rgbG
-            // 
-            this.rgbG.AutoSize = true;
-            this.rgbG.Location = new System.Drawing.Point(49, 133);
-            this.rgbG.Name = "rgbG";
-            this.rgbG.Size = new System.Drawing.Size(0, 16);
-            this.rgbG.TabIndex = 10;
-            // 
-            // rgbR
-            // 
-            this.rgbR.AutoSize = true;
-            this.rgbR.Location = new System.Drawing.Point(49, 105);
-            this.rgbR.Name = "rgbR";
-            this.rgbR.Size = new System.Drawing.Size(0, 16);
-            this.rgbR.TabIndex = 9;
-            // 
-            // rgbA
-            // 
-            this.rgbA.AutoSize = true;
-            this.rgbA.Location = new System.Drawing.Point(48, 75);
-            this.rgbA.Name = "rgbA";
-            this.rgbA.Size = new System.Drawing.Size(0, 16);
-            this.rgbA.TabIndex = 8;
-            // 
-            // l4
-            // 
-            this.l4.AutoSize = true;
-            this.l4.Location = new System.Drawing.Point(20, 160);
-            this.l4.Name = "l4";
-            this.l4.Size = new System.Drawing.Size(22, 16);
-            this.l4.TabIndex = 7;
-            this.l4.Text = "B:";
-            // 
-            // l3
-            // 
-            this.l3.AutoSize = true;
-            this.l3.Location = new System.Drawing.Point(20, 133);
-            this.l3.Name = "l3";
-            this.l3.Size = new System.Drawing.Size(23, 16);
-            this.l3.TabIndex = 6;
-            this.l3.Text = "G:";
-            // 
-            // l2
-            // 
-            this.l2.AutoSize = true;
-            this.l2.Location = new System.Drawing.Point(20, 105);
-            this.l2.Name = "l2";
-            this.l2.Size = new System.Drawing.Size(23, 16);
-            this.l2.TabIndex = 5;
-            this.l2.Text = "R:";
-            // 
-            // l1
-            // 
-            this.l1.AutoSize = true;
-            this.l1.Location = new System.Drawing.Point(20, 75);
-            this.l1.Name = "l1";
-            this.l1.Size = new System.Drawing.Size(22, 16);
-            this.l1.TabIndex = 4;
-            this.l1.Text = "A:";
+            this.picSelectedColorOfLine.Location = new System.Drawing.Point(47, 173);
+            this.picSelectedColorOfLine.Name = "picSelectedColorOfLine";
+            this.picSelectedColorOfLine.Size = new System.Drawing.Size(46, 39);
+            this.picSelectedColorOfLine.TabIndex = 12;
+            this.picSelectedColorOfLine.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(182, 16);
+            this.label1.Size = new System.Drawing.Size(228, 16);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Click to choose the color:";
+            this.label1.Text = "Click to choose the color of line:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(252, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.operationsToolStripMenuItem});
+            this.operationsToolStripMenuItem,
+            this.saveAsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1080, 24);
@@ -369,19 +338,42 @@
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
-            // button1
+            // saveAsToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(482, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BMPToolStripMenuItem,
+            this.jPEGToolStripMenuItem,
+            this.pNGToolStripMenuItem});
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.saveAsToolStripMenuItem.Text = "Save As..";
+            // 
+            // BMPToolStripMenuItem
+            // 
+            this.BMPToolStripMenuItem.Name = "BMPToolStripMenuItem";
+            this.BMPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.BMPToolStripMenuItem.Text = "BMP";
+            this.BMPToolStripMenuItem.Click += new System.EventHandler(this.BMPToolStripMenuItem_Click);
+            // 
+            // jPEGToolStripMenuItem
+            // 
+            this.jPEGToolStripMenuItem.Name = "jPEGToolStripMenuItem";
+            this.jPEGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jPEGToolStripMenuItem.Text = "JPEG";
+            this.jPEGToolStripMenuItem.Click += new System.EventHandler(this.jPEGToolStripMenuItem_Click);
+            // 
+            // pNGToolStripMenuItem
+            // 
+            this.pNGToolStripMenuItem.Name = "pNGToolStripMenuItem";
+            this.pNGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pNGToolStripMenuItem.Text = "PNG";
+            this.pNGToolStripMenuItem.Click += new System.EventHandler(this.pNGToolStripMenuItem_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(110, 35);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(82, 28);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 6;
@@ -390,7 +382,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(167, 35);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(82, 55);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 7;
@@ -399,7 +392,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(223, 35);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(82, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 8;
@@ -408,7 +402,8 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(284, 35);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(82, 113);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 9;
@@ -417,44 +412,64 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(350, 35);
+            this.label8.Location = new System.Drawing.Point(13, 28);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.Size = new System.Drawing.Size(57, 16);
             this.label8.TabIndex = 10;
-            this.label8.Text = "label8";
+            this.label8.Text = "Start X:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(75, 362);
+            this.label9.Location = new System.Drawing.Point(13, 55);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.Size = new System.Drawing.Size(58, 16);
             this.label9.TabIndex = 11;
-            this.label9.Text = "label9";
+            this.label9.Text = "Start Y:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(75, 391);
+            this.label10.Location = new System.Drawing.Point(13, 85);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.Size = new System.Drawing.Size(66, 16);
             this.label10.TabIndex = 12;
-            this.label10.Text = "label10";
+            this.label10.Text = "Finish X:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(13, 113);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(67, 16);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Finish Y:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox2.Location = new System.Drawing.Point(598, 29);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(139, 293);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Coordinates:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 433);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -469,13 +484,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.paintBox)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectedColorOfBackground)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSelectedColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectedColorOfLine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -488,7 +507,6 @@
         private System.Windows.Forms.ToolStripButton toolStripLine;
         private System.Windows.Forms.ToolStripButton toolStripRectangle;
         private System.Windows.Forms.ToolStripButton toolStripCircle;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -497,22 +515,13 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Label rgbB;
-        private System.Windows.Forms.Label rgbG;
-        private System.Windows.Forms.Label rgbR;
-        private System.Windows.Forms.Label rgbA;
-        private System.Windows.Forms.Label l4;
-        private System.Windows.Forms.Label l3;
-        private System.Windows.Forms.Label l2;
-        private System.Windows.Forms.Label l1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox picSelectedColor;
+        private System.Windows.Forms.PictureBox picSelectedColorOfLine;
         private System.Windows.Forms.PictureBox paintBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label labelThickness;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -520,6 +529,17 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.PictureBox picSelectedColorOfBackground;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BMPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jPEGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pNGToolStripMenuItem;
     }
 }
 
