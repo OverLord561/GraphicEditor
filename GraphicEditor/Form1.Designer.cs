@@ -36,6 +36,7 @@
             this.toolStripLine = new System.Windows.Forms.ToolStripButton();
             this.toolStripRectangle = new System.Windows.Forms.ToolStripButton();
             this.toolStripCircle = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -52,13 +53,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.operationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bMPToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.jPEGToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pNGToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jPEGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -68,6 +68,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -120,10 +121,11 @@
             this.toolStripPencil,
             this.toolStripLine,
             this.toolStripRectangle,
-            this.toolStripCircle});
+            this.toolStripCircle,
+            this.toolStripButton1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(24, 103);
+            this.toolStrip2.Size = new System.Drawing.Size(24, 126);
             this.toolStrip2.TabIndex = 0;
             // 
             // toolStripPencil
@@ -165,6 +167,16 @@
             this.toolStripCircle.Size = new System.Drawing.Size(22, 20);
             this.toolStripCircle.Text = "Circle";
             this.toolStripCircle.Click += new System.EventHandler(this.toolStripCircle_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(22, 20);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // groupBox1
             // 
@@ -289,8 +301,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.operationsToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.operationsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1080, 24);
@@ -310,10 +321,35 @@
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bMPToolStripMenuItem1,
+            this.jPEGToolStripMenuItem1,
+            this.pNGToolStripMenuItem1});
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // bMPToolStripMenuItem1
+            // 
+            this.bMPToolStripMenuItem1.Name = "bMPToolStripMenuItem1";
+            this.bMPToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
+            this.bMPToolStripMenuItem1.Text = "BMP";
+            this.bMPToolStripMenuItem1.Click += new System.EventHandler(this.BMPToolStripMenuItem_Click);
+            // 
+            // jPEGToolStripMenuItem1
+            // 
+            this.jPEGToolStripMenuItem1.Name = "jPEGToolStripMenuItem1";
+            this.jPEGToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
+            this.jPEGToolStripMenuItem1.Text = "JPEG";
+            this.jPEGToolStripMenuItem1.Click += new System.EventHandler(this.jPEGToolStripMenuItem_Click);
+            // 
+            // pNGToolStripMenuItem1
+            // 
+            this.pNGToolStripMenuItem1.Name = "pNGToolStripMenuItem1";
+            this.pNGToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
+            this.pNGToolStripMenuItem1.Text = "PNG";
+            this.pNGToolStripMenuItem1.Click += new System.EventHandler(this.pNGToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -321,6 +357,7 @@
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -337,37 +374,6 @@
             this.clearToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.BMPToolStripMenuItem,
-            this.jPEGToolStripMenuItem,
-            this.pNGToolStripMenuItem});
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.saveAsToolStripMenuItem.Text = "Save As..";
-            // 
-            // BMPToolStripMenuItem
-            // 
-            this.BMPToolStripMenuItem.Name = "BMPToolStripMenuItem";
-            this.BMPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.BMPToolStripMenuItem.Text = "BMP";
-            this.BMPToolStripMenuItem.Click += new System.EventHandler(this.BMPToolStripMenuItem_Click);
-            // 
-            // jPEGToolStripMenuItem
-            // 
-            this.jPEGToolStripMenuItem.Name = "jPEGToolStripMenuItem";
-            this.jPEGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.jPEGToolStripMenuItem.Text = "JPEG";
-            this.jPEGToolStripMenuItem.Click += new System.EventHandler(this.jPEGToolStripMenuItem_Click);
-            // 
-            // pNGToolStripMenuItem
-            // 
-            this.pNGToolStripMenuItem.Name = "pNGToolStripMenuItem";
-            this.pNGToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pNGToolStripMenuItem.Text = "PNG";
-            this.pNGToolStripMenuItem.Click += new System.EventHandler(this.pNGToolStripMenuItem_Click);
             // 
             // label4
             // 
@@ -463,11 +469,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Coordinates:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(483, 341);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Invert";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 433);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
@@ -536,10 +553,11 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem BMPToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jPEGToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pNGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bMPToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem jPEGToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pNGToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
