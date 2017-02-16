@@ -72,19 +72,24 @@ namespace GraphicEditor
         //to set color of filling(basckground) and show it on picturebox
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            SetColor(ref colorOfBackground, picSelectedColorOfBackground);
+            bool IsbgrColorSet = false;
+            IsbgrColorSet =  SetColor(ref colorOfBackground, picSelectedColorOfBackground); // if DialogResult.OK, modify checkbox;
             rememberBackgroundColor = colorOfBackground;
-            checkBox1.Enabled = true;
-            checkBox1.Checked = true;
+            checkBox1.Enabled = IsbgrColorSet;
+            checkBox1.Checked = IsbgrColorSet;
         }
         // SET color via ColorDialog
-        private void SetColor(ref Color currentColor, PictureBox currentPictureBOX)
+        private bool SetColor(ref Color currentColor, PictureBox currentPictureBOX)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 currentColor = colorDialog1.Color;
                 currentPictureBOX.BackColor = currentColor;
-
+                return true;
+            }
+            else
+            {
+                return false;
             }
            
 
@@ -105,7 +110,7 @@ namespace GraphicEditor
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label8.Text = "";
+          
             label7.Text = "";
             label6.Text = "";
             label5.Text = "";
@@ -240,6 +245,7 @@ namespace GraphicEditor
                     /*To see slightly increased figure, it is necessary to remove previous drawn figure
                      by replacing the painted image to basic picture(before we started painting / initial picture)*/
                     bmp = new Bitmap(basicpicture);
+                    line.Width = thickness+2;
                 }
               
                 using (Graphics graphic = Graphics.FromImage(bmp))
