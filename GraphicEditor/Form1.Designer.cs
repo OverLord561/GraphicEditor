@@ -59,6 +59,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invertAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -69,6 +70,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.loadGif = new System.Windows.Forms.PictureBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -82,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadGif)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -108,6 +111,7 @@
             this.paintBox.Location = new System.Drawing.Point(3, 4);
             this.paintBox.Name = "paintBox";
             this.paintBox.Size = new System.Drawing.Size(562, 266);
+            this.paintBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.paintBox.TabIndex = 0;
             this.paintBox.TabStop = false;
             this.paintBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.paintBox_MouseDown);
@@ -175,7 +179,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(22, 20);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Text = "Eraser";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // groupBox1
@@ -194,7 +198,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(743, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(325, 295);
+            this.groupBox1.Size = new System.Drawing.Size(325, 271);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
@@ -256,7 +260,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(153, 226);
+            this.trackBar1.Location = new System.Drawing.Point(150, 225);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(127, 45);
             this.trackBar1.TabIndex = 14;
@@ -314,7 +318,8 @@
             this.saveToolStripMenuItem,
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem,
-            this.clearToolStripMenuItem});
+            this.clearToolStripMenuItem,
+            this.invertAsToolStripMenuItem});
             this.operationsToolStripMenuItem.Name = "operationsToolStripMenuItem";
             this.operationsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.operationsToolStripMenuItem.Text = "Operations";
@@ -327,7 +332,7 @@
             this.pNGToolStripMenuItem1});
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // bMPToolStripMenuItem1
@@ -355,7 +360,7 @@
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -363,7 +368,7 @@
             // 
             this.exitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripMenuItem.Image")));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -371,9 +376,16 @@
             // 
             this.clearToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearToolStripMenuItem.Image")));
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.clearToolStripMenuItem.Text = "Clear";
             this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // invertAsToolStripMenuItem
+            // 
+            this.invertAsToolStripMenuItem.Name = "invertAsToolStripMenuItem";
+            this.invertAsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.invertAsToolStripMenuItem.Text = "Invert async / await";
+            this.invertAsToolStripMenuItem.Click += new System.EventHandler(this.invertAsToolStripMenuItem_Click);
             // 
             // label4
             // 
@@ -464,14 +476,14 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(598, 29);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(139, 293);
+            this.groupBox2.Size = new System.Drawing.Size(139, 168);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Coordinates:";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(483, 341);
+            this.button1.Location = new System.Drawing.Point(636, 223);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 15;
@@ -479,14 +491,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // loadGif
+            // 
+            this.loadGif.Image = ((System.Drawing.Image)(resources.GetObject("loadGif.Image")));
+            this.loadGif.Location = new System.Drawing.Point(658, 266);
+            this.loadGif.Name = "loadGif";
+            this.loadGif.Size = new System.Drawing.Size(32, 32);
+            this.loadGif.TabIndex = 17;
+            this.loadGif.TabStop = false;
+            this.loadGif.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 433);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.loadGif);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -512,6 +535,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadGif)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,6 +582,8 @@
         private System.Windows.Forms.ToolStripMenuItem pNGToolStripMenuItem1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox loadGif;
+        private System.Windows.Forms.ToolStripMenuItem invertAsToolStripMenuItem;
     }
 }
 

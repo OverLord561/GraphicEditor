@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -14,25 +15,26 @@ namespace GraphicEditor
 {
     public partial class Form1 : Form
     {
-        // Color of line/border
-        Color colorOfLine;
-        // Color of filling (background)
-        Color colorOfBackground;
 
-        bool draw = false;
-        int thickness;
-        Tool tool;
-        //point to draw figires
-        int sx, sy, fx, fy;
-        //first click(mouse down) on picturebox
-        int initialY, initialX;
-        ImageFormat format;
-        delegate void MyDelegate(int x, int y);
+        Color colorOfLine; // Color of line/border
+        Color colorOfBackground; // Color of filling (background)
+        int thickness;   // thickness of line
+        bool draw = false; // Shows status of drawing        
+        Tool tool; // Tool for drawing     
+        int sx, sy, fx, fy;  //points for figures drawing       
+        int initialY, initialX;  //first click(mouse down) on picturebox
 
-        Bitmap bmp;
-        Bitmap graphicBMP;
-        Image basicpicture;
-        Image initialPicture;
+        public delegate void ShowProgressDelegate();
+        ShowProgressDelegate DELMAIN;
+
+        Bitmap bmp; // 
+        Bitmap graphicBMP;  // Drawn image in bitmap format
+        Image basicpicture;     //  Drawn image     
+        Image initialPicture;  // After "clear" operation, all graphics replace to this image.
+
+
+
+
 
         public Form1()
         {
@@ -42,8 +44,15 @@ namespace GraphicEditor
             graphicBMP = new Bitmap(paintBox.Image);
             initialPicture = basicpicture;
 
+            // show the color of line by default
             picSelectedColorOfLine.BackColor = Color.White;
+            // show the color of filling by default
             picSelectedColorOfBackground.BackColor = Color.White;
+
+            DELMAIN = new ShowProgressDelegate(UpdateProgress);
+
+            // to enable access to controls from another thread
+            // CheckForIllegalCrossThreadCalls = false;
 
 
         }
@@ -64,17 +73,18 @@ namespace GraphicEditor
         {
             SetColor(ref colorOfBackground, picSelectedColorOfBackground);
         }
-
-        private void SetColor(ref Color currentColor, PictureBox currentPicture)
+        // SET color via ColorDialog
+        private void SetColor(ref Color currentColor, PictureBox currentPictureBOX)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 currentColor = colorDialog1.Color;
-                currentPicture.BackColor = currentColor;
+                currentPictureBOX.BackColor = currentColor;
 
             }
 
         }
+        // SET thickness of line via trackbar
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             thickness = trackBar1.Value;
@@ -95,8 +105,6 @@ namespace GraphicEditor
             label6.Text = "";
             label5.Text = "";
             label4.Text = "";
-
-
 
             paintBox.Image = initialPicture;
             basicpicture = initialPicture;
@@ -146,6 +154,7 @@ namespace GraphicEditor
             SaveImage(ImageFormat.Png);
         }
 
+        //Save image according to selected format
         private void SaveImage(ImageFormat format)
         {
             SaveFileDialog dialog = new SaveFileDialog();
@@ -164,19 +173,19 @@ namespace GraphicEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string path = null;
-            string name = null;
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Images|*.png;*.bmp;*.jpg";
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 path = openFile.FileName;
-                name = openFile.SafeFileName;
+
             }
 
             paintBox.Image = Image.FromFile(path);
             basicpicture = paintBox.Image;
             initialPicture = basicpicture;
+            graphicBMP = new Bitmap(paintBox.Image);
 
 
         }
@@ -185,24 +194,27 @@ namespace GraphicEditor
         #endregion
 
         #region Drawing
+        // First initial click on picturebox
         private void paintBox_MouseDown(object sender, MouseEventArgs e)
         {
 
-            draw = true;
+            draw = true; // status of drawing
             sx = e.X;
             sy = e.Y;
-            //////
+
             initialY = sy;
             initialX = sx;
 
+            //Display points
             label4.Text = initialX.ToString();
             label5.Text = initialY.ToString();
             label6.Text = fx.ToString();
             label7.Text = fy.ToString();
 
+
         }
 
-        
+
 
         private void paintBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -216,60 +228,56 @@ namespace GraphicEditor
 
                 if (tool == Tool.Pencil)
                 {
+
                     bmp = new Bitmap(paintBox.Image);
                 }
                 else
                 {
+                    /*To see slightly increased figure, it is necessary to remove previous drawn figure
+                     by replacing the painted image to basic picture(before we started painting / initial picture)*/
                     bmp = new Bitmap(basicpicture);
                 }
-
+              
                 using (Graphics graphic = Graphics.FromImage(bmp))
                 {
+                    fx = e.X;
+                    fy = e.Y;
 
                     switch (tool)
                     {
                         case Tool.Rectangle:
 
-                            fx = e.X;
-                            fy = e.Y;
                             SwapPoints(ref fx, ref fy);
                             Rectangle rectangle = new Rectangle(sx, sy, fx - sx, fy - sy);
                             graphic.DrawRectangle(line, rectangle);
                             graphic.FillRectangle(new SolidBrush(colorOfBackground), rectangle);
-                            //await DrawRectAsync(rectangle, paintBox, tool, basicpicture);
                             paintBox.Image = bmp;
                             break;
 
 
                         case Tool.Circle:
-                            fx = e.X;
-                            fy = e.Y;
-                            SwapPoints(ref fx, ref fy);
 
-                            graphic.DrawEllipse(line, sx, sy, fx - sx , fy - sy);
+                            SwapPoints(ref fx, ref fy);
+                            graphic.DrawEllipse(line, sx, sy, fx - sx, fy - sy);
                             graphic.FillEllipse(new SolidBrush(colorOfBackground), sx, sy, fx - sx, fy - sy);
                             paintBox.Image = bmp;
                             break;
 
 
                         case Tool.Line:
-                            fx = e.X;
-                            fy = e.Y;
+
                             graphic.DrawLine(line, new Point(sx, sy), new Point(fx, fy));
                             paintBox.Image = bmp;
                             break;
 
                         case Tool.Pencil:
-                            fx = e.X;
-                            fy = e.Y;
 
                             graphic.FillEllipse(new SolidBrush(colorOfLine), fx - sx + sx, fy - sy + sy, thickness + 5, thickness + 5);
                             paintBox.Image = bmp;
                             break;
 
                         case Tool.Erase:
-                            fx = e.X;
-                            fy = e.Y;
+
                             graphic.FillEllipse(new SolidBrush(Color.White), fx - sx + sx, fy - sy + sy, thickness + 5, thickness + 5);
                             break;
                     }
@@ -279,42 +287,20 @@ namespace GraphicEditor
 
         }
 
-        //Task DrawRectAsync( Rectangle rec, PictureBox paintBox, Tool tool, Image basicpicture)
-        //{
-        //    Bitmap bmp;
-        //    return Task.Factory.StartNew(() =>
-        //    {
-        //        if (tool == Tool.Pencil)
-        //        {
-        //            bmp = new Bitmap(paintBox.Image);
-        //        }
-        //        else
-        //        {
-        //            using (bmp = new Bitmap(basicpicture)) { }
-
-        //        }
-
-        //        Graphics g = Graphics.FromImage(bmp);
-        //        Pen line = new Pen(paintColor);
-        //        Rectangle rectangle = new Rectangle(sx, sy, fx - sx, fy - sy);
-        //        g.DrawRectangle(line, rectangle);
-        //        paintBox.Image = bmp;
-
-        //    });
-        //}
-
 
         private void paintBox_MouseUp(object sender, MouseEventArgs e)
         {
             draw = false;
 
-            graphicBMP = new Bitmap(paintBox.Image);
-            basicpicture = paintBox.Image;
+            graphicBMP = new Bitmap(paintBox.Image); // Drawn image in bitmap format
+            basicpicture = paintBox.Image;  //set new background after drawing
 
         }
 
 
-
+        // Swap points to replace point of start and finish
+        // cause: drawing figures is possible only from top left to bottom right by default
+        // so,  when we try to draw in another direction we have to imitation drawing from top left to bottom right
         private void SwapPoints(ref int fx, ref int fy)
         {
             label4.Text = initialX.ToString();
@@ -322,7 +308,6 @@ namespace GraphicEditor
             label6.Text = fx.ToString();
             label7.Text = fy.ToString();
 
-            //paintBox.Refresh();
             // 4 quarter by default
             sy = initialY;
             sx = initialX;
@@ -362,16 +347,61 @@ namespace GraphicEditor
         }
         #endregion
 
+        #region Inversion
 
+        Task<Bitmap> InvertAsync(Bitmap source)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(5000);
+
+                return Transform(source);
+
+            });
+        }
+
+
+        // Set load gif invisible
+        private void UpdateProgress()
+        {
+            loadGif.Visible = false;
+        }
+
+        //Invert image via async programming using TASKS, async & await
+        private async void invertAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadGif.Visible = true;       // Id of thread = 10    
+            graphicBMP = await InvertAsync(this.graphicBMP); // Convertation in new thread. Management will return to this point
+            paintBox.Image = graphicBMP; 
+            basicpicture = paintBox.Image;
+            UpdateProgress();
+        }
+
+       // Invert image via async programming using Thread, delegate
         private void button1_Click(object sender, EventArgs e)
         {
-            paintBox.Image =  Transform(graphicBMP);
-            basicpicture = paintBox.Image;
+
+           
+            loadGif.Visible = true;
+            Thread myThread = new Thread(delegate()
+            {
+
+                graphicBMP = Transform(graphicBMP);
+              
+                paintBox.Image = graphicBMP;
+                basicpicture = paintBox.Image;
+              
+                loadGif.Invoke(DELMAIN);
+
+            });
+            myThread.Start();
+
 
         }
 
         public Bitmap Transform(Bitmap source)
         {
+
             Thread.Sleep(5000);
             //create a blank bitmap the same size as original
             Bitmap newBitmap = new Bitmap(source.Width, source.Height);
@@ -382,11 +412,11 @@ namespace GraphicEditor
             // create the negative color matrix
             ColorMatrix colorMatrix = new ColorMatrix(new float[][]
             {
-        new float[] {-1, 0, 0, 0, 0},
-        new float[] {0, -1, 0, 0, 0},
-        new float[] {0, 0, -1, 0, 0},
-        new float[] {0, 0, 0, 1, 0},
-        new float[] {1, 1, 1, 0, 1}
+                 new float[] {-1, 0, 0, 0, 0},
+                 new float[] {0, -1, 0, 0, 0},
+                 new float[] {0, 0, -1, 0, 0},
+                 new float[] {0, 0, 0, 1, 0},
+                 new float[] {1, 1, 1, 0, 1}
             });
 
             // create some image attributes
@@ -402,7 +432,7 @@ namespace GraphicEditor
 
             return newBitmap;
         }
-
+        #endregion
 
     }
 }
