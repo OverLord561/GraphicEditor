@@ -16,25 +16,24 @@ namespace GraphicEditor
     public partial class Form1 : Form
     {
 
-        Color colorOfLine; // Color of line/border
-        Color colorOfBackground; // Color of filling (background)
+        Color colorOfLine = Color.White; // Color of line/border
+        Color colorOfBackground = Color.White; // Color of filling (background)
         int thickness;   // thickness of line
         bool draw = false; // Shows status of drawing        
         Tool tool; // Tool for drawing     
         int sx, sy, fx, fy;  //points for figures drawing       
         int initialY, initialX;  //first click(mouse down) on picturebox
 
-        public delegate void ShowProgressDelegate();
-        ShowProgressDelegate DELMAIN;
+        public delegate void ShowProgressDelegate();// access to load gif
+        ShowProgressDelegate DELMain;
 
-        Bitmap bmp; // 
-        Bitmap graphicBMP;  // Drawn image in bitmap format
-        Image basicpicture;     //  Drawn image     
+        public delegate void InvertImageDelegate(Bitmap image); // access to paintBox
+        InvertImageDelegate DELInvert;
+
+        Bitmap bmp; // Drawn image in bitmap format during process of drawing
+        Bitmap graphicBMP;  // Finally drawn image in bitmap format
+        Image basicpicture;     // Finally drawn image     
         Image initialPicture;  // After "clear" operation, all graphics replace to this image.
-
-
-
-
 
         public Form1()
         {
@@ -48,8 +47,9 @@ namespace GraphicEditor
             picSelectedColorOfLine.BackColor = Color.White;
             // show the color of filling by default
             picSelectedColorOfBackground.BackColor = Color.White;
-
-            DELMAIN = new ShowProgressDelegate(UpdateProgress);
+            
+            DELMain = new ShowProgressDelegate(UpdateProgress); // link load gif updater
+            DELInvert = new InvertImageDelegate(UpdateImage); // link load paintBox updater
 
             // to enable access to controls from another thread
             // CheckForIllegalCrossThreadCalls = false;
@@ -364,34 +364,42 @@ namespace GraphicEditor
         // Set load gif invisible
         private void UpdateProgress()
         {
-            loadGif.Visible = false;
+            
+            loadGif.Visible = false; //Id of thread = 10  
+        }
+
+
+        private void UpdateImage(Bitmap image)
+        {
+            paintBox.Image = image;
         }
 
         //Invert image via async programming using TASKS, async & await
         private async void invertAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            loadGif.Visible = true;       // Id of thread = 10    
+            loadGif.Visible = true;       
             graphicBMP = await InvertAsync(this.graphicBMP); // Convertation in new thread. Management will return to this point
             paintBox.Image = graphicBMP; 
-            basicpicture = paintBox.Image;
-            UpdateProgress();
+            basicpicture = paintBox.Image;  
+            UpdateProgress();  
         }
 
        // Invert image via async programming using Thread, delegate
         private void button1_Click(object sender, EventArgs e)
         {
 
-           
-            loadGif.Visible = true;
+          
+            loadGif.Visible = true; 
             Thread myThread = new Thread(delegate()
-            {
-
+            {               
                 graphicBMP = Transform(graphicBMP);
-              
-                paintBox.Image = graphicBMP;
+                //To access painBox  from another thread via delegate */  
+                paintBox.Invoke(DELInvert, new object[] { graphicBMP });
                 basicpicture = paintBox.Image;
-              
-                loadGif.Invoke(DELMAIN);
+                
+                //To access load gif from another thread via delegate */                           
+                loadGif.Invoke(DELMain); 
+
 
             });
             myThread.Start();

@@ -71,6 +71,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.loadGif = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -85,6 +86,7 @@
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadGif)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -92,7 +94,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.paintBox);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.panel1);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(568, 270);
             // 
             // toolStripContainer1.LeftToolStripPanel
@@ -108,10 +110,10 @@
             // 
             this.paintBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.paintBox.Image = ((System.Drawing.Image)(resources.GetObject("paintBox.Image")));
-            this.paintBox.Location = new System.Drawing.Point(3, 4);
+            this.paintBox.Location = new System.Drawing.Point(0, -4);
             this.paintBox.Name = "paintBox";
             this.paintBox.Size = new System.Drawing.Size(562, 266);
-            this.paintBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.paintBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.paintBox.TabIndex = 0;
             this.paintBox.TabStop = false;
             this.paintBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.paintBox_MouseDown);
@@ -501,10 +503,20 @@
             this.loadGif.TabStop = false;
             this.loadGif.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.paintBox);
+            this.panel1.Location = new System.Drawing.Point(3, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(565, 265);
+            this.panel1.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1080, 433);
             this.Controls.Add(this.loadGif);
             this.Controls.Add(this.groupBox2);
@@ -536,6 +548,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadGif)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -584,6 +598,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox loadGif;
         private System.Windows.Forms.ToolStripMenuItem invertAsToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
