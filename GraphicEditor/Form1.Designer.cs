@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.paintBox = new System.Windows.Forms.PictureBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripPencil = new System.Windows.Forms.ToolStripButton();
@@ -60,6 +61,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invertAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invertThreaddelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -71,10 +73,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.loadGif = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.AsyncAwaitButton = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paintBox)).BeginInit();
             this.toolStrip2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -86,7 +91,6 @@
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadGif)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -105,6 +109,15 @@
             this.toolStripContainer1.Size = new System.Drawing.Size(592, 295);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.paintBox);
+            this.panel1.Location = new System.Drawing.Point(3, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(565, 265);
+            this.panel1.TabIndex = 18;
             // 
             // paintBox
             // 
@@ -186,6 +199,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.pictureBox3);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.picSelectedColorOfBackground);
@@ -321,7 +335,8 @@
             this.openToolStripMenuItem,
             this.exitToolStripMenuItem,
             this.clearToolStripMenuItem,
-            this.invertAsToolStripMenuItem});
+            this.invertAsToolStripMenuItem,
+            this.invertThreaddelToolStripMenuItem});
             this.operationsToolStripMenuItem.Name = "operationsToolStripMenuItem";
             this.operationsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.operationsToolStripMenuItem.Text = "Operations";
@@ -389,15 +404,21 @@
             this.invertAsToolStripMenuItem.Text = "Invert async / await";
             this.invertAsToolStripMenuItem.Click += new System.EventHandler(this.invertAsToolStripMenuItem_Click);
             // 
+            // invertThreaddelToolStripMenuItem
+            // 
+            this.invertThreaddelToolStripMenuItem.Name = "invertThreaddelToolStripMenuItem";
+            this.invertThreaddelToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.invertThreaddelToolStripMenuItem.Text = "Invert thread/del";
+            this.invertThreaddelToolStripMenuItem.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(82, 28);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "label4";
             // 
             // label5
             // 
@@ -405,9 +426,8 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(82, 55);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 7;
-            this.label5.Text = "label5";
             // 
             // label6
             // 
@@ -415,9 +435,8 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(82, 85);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 8;
-            this.label6.Text = "label6";
             // 
             // label7
             // 
@@ -425,9 +444,8 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.Location = new System.Drawing.Point(82, 113);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 9;
-            this.label7.Text = "label7";
             // 
             // label8
             // 
@@ -485,32 +503,55 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(636, 223);
+            this.button1.Location = new System.Drawing.Point(614, 200);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(107, 42);
             this.button1.TabIndex = 15;
-            this.button1.Text = "Invert";
+            this.button1.Text = "Invert via thread/delegate";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // loadGif
             // 
             this.loadGif.Image = ((System.Drawing.Image)(resources.GetObject("loadGif.Image")));
-            this.loadGif.Location = new System.Drawing.Point(658, 266);
+            this.loadGif.Location = new System.Drawing.Point(646, 248);
             this.loadGif.Name = "loadGif";
             this.loadGif.Size = new System.Drawing.Size(32, 32);
             this.loadGif.TabIndex = 17;
             this.loadGif.TabStop = false;
             this.loadGif.Visible = false;
             // 
-            // panel1
+            // AsyncAwaitButton
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.paintBox);
-            this.panel1.Location = new System.Drawing.Point(3, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(565, 265);
-            this.panel1.TabIndex = 18;
+            this.AsyncAwaitButton.Location = new System.Drawing.Point(614, 283);
+            this.AsyncAwaitButton.Name = "AsyncAwaitButton";
+            this.AsyncAwaitButton.Size = new System.Drawing.Size(107, 36);
+            this.AsyncAwaitButton.TabIndex = 18;
+            this.AsyncAwaitButton.Text = "Invert via async/await";
+            this.AsyncAwaitButton.UseVisualStyleBackColor = true;
+            this.AsyncAwaitButton.Click += new System.EventHandler(this.invertAsToolStripMenuItem_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(27, 326);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(518, 32);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "You can open image which is larger than place for painting. The scroll bars will " +
+    "appear!\r\n\r\n";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(285, 154);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
@@ -518,6 +559,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1080, 433);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.AsyncAwaitButton);
             this.Controls.Add(this.loadGif);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
@@ -533,6 +576,8 @@
             this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paintBox)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
@@ -548,8 +593,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadGif)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -599,6 +642,10 @@
         private System.Windows.Forms.PictureBox loadGif;
         private System.Windows.Forms.ToolStripMenuItem invertAsToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button AsyncAwaitButton;
+        private System.Windows.Forms.ToolStripMenuItem invertThreaddelToolStripMenuItem;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

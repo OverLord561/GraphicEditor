@@ -17,7 +17,8 @@ namespace GraphicEditor
     {
 
         Color colorOfLine = Color.White; // Color of line/border
-        Color colorOfBackground = Color.White; // Color of filling (background)
+        Color colorOfBackground ; // Color of filling (background)
+        Color rememberBackgroundColor;
         int thickness;   // thickness of line
         bool draw = false; // Shows status of drawing        
         Tool tool; // Tool for drawing     
@@ -25,10 +26,10 @@ namespace GraphicEditor
         int initialY, initialX;  //first click(mouse down) on picturebox
 
         public delegate void ShowProgressDelegate();// access to load gif
-        ShowProgressDelegate DELMain;
+        ShowProgressDelegate DELGif;
 
         public delegate void InvertImageDelegate(Bitmap image); // access to paintBox
-        InvertImageDelegate DELInvert;
+        InvertImageDelegate DELImage;
 
         Bitmap bmp; // Drawn image in bitmap format during process of drawing
         Bitmap graphicBMP;  // Finally drawn image in bitmap format
@@ -48,8 +49,8 @@ namespace GraphicEditor
             // show the color of filling by default
             picSelectedColorOfBackground.BackColor = Color.White;
             
-            DELMain = new ShowProgressDelegate(UpdateProgress); // link load gif updater
-            DELInvert = new InvertImageDelegate(UpdateImage); // link load paintBox updater
+            DELGif = new ShowProgressDelegate(UpdateProgress); // link load gif updater
+            DELImage = new InvertImageDelegate(UpdateImage); // link load paintBox updater
 
             // to enable access to controls from another thread
             // CheckForIllegalCrossThreadCalls = false;
@@ -72,6 +73,9 @@ namespace GraphicEditor
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             SetColor(ref colorOfBackground, picSelectedColorOfBackground);
+            rememberBackgroundColor = colorOfBackground;
+            checkBox1.Enabled = true;
+            checkBox1.Checked = true;
         }
         // SET color via ColorDialog
         private void SetColor(ref Color currentColor, PictureBox currentPictureBOX)
@@ -82,6 +86,7 @@ namespace GraphicEditor
                 currentPictureBOX.BackColor = currentColor;
 
             }
+           
 
         }
         // SET thickness of line via trackbar
@@ -213,8 +218,7 @@ namespace GraphicEditor
 
 
         }
-
-
+        
 
         private void paintBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -226,7 +230,7 @@ namespace GraphicEditor
                 line.Width = thickness;
 
 
-                if (tool == Tool.Pencil)
+                if (tool == Tool.Pencil || tool == Tool.Erase)
                 {
 
                     bmp = new Bitmap(paintBox.Image);
@@ -247,6 +251,7 @@ namespace GraphicEditor
                     {
                         case Tool.Rectangle:
 
+                        
                             SwapPoints(ref fx, ref fy);
                             Rectangle rectangle = new Rectangle(sx, sy, fx - sx, fy - sy);
                             graphic.DrawRectangle(line, rectangle);
@@ -257,6 +262,7 @@ namespace GraphicEditor
 
                         case Tool.Circle:
 
+                           
                             SwapPoints(ref fx, ref fy);
                             graphic.DrawEllipse(line, sx, sy, fx - sx, fy - sy);
                             graphic.FillEllipse(new SolidBrush(colorOfBackground), sx, sy, fx - sx, fy - sy);
@@ -279,6 +285,7 @@ namespace GraphicEditor
                         case Tool.Erase:
 
                             graphic.FillEllipse(new SolidBrush(Color.White), fx - sx + sx, fy - sy + sy, thickness + 5, thickness + 5);
+                            paintBox.Image = bmp;
                             break;
                     }
 
@@ -298,6 +305,19 @@ namespace GraphicEditor
         }
 
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (checkBox1.Checked == false) // if figure must be empty
+            {
+                colorOfBackground = new Color(); // back color must be null
+            }
+            else // else use remembered  color for background filling
+            {
+                colorOfBackground = rememberBackgroundColor;
+            }
+
+        }
         // Swap points to replace point of start and finish
         // cause: drawing figures is possible only from top left to bottom right by default
         // so,  when we try to draw in another direction we have to imitation drawing from top left to bottom right
@@ -349,29 +369,29 @@ namespace GraphicEditor
 
         #region Inversion
 
+        // Set load gif invisible
+        private void UpdateProgress()
+        {
+            loadGif.Visible = false;
+        }
+        // Set converted picture
+        private void UpdateImage(Bitmap image)
+        {
+            paintBox.Image = image;
+        }
+
+        
+        
+
         Task<Bitmap> InvertAsync(Bitmap source)
         {
             return Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(5000);
 
-                return Transform(source);
+                return TransformImage(source);
 
             });
-        }
-
-
-        // Set load gif invisible
-        private void UpdateProgress()
-        {
-            
-            loadGif.Visible = false; //Id of thread = 10  
-        }
-
-
-        private void UpdateImage(Bitmap image)
-        {
-            paintBox.Image = image;
         }
 
         //Invert image via async programming using TASKS, async & await
@@ -392,13 +412,13 @@ namespace GraphicEditor
             loadGif.Visible = true; 
             Thread myThread = new Thread(delegate()
             {               
-                graphicBMP = Transform(graphicBMP);
+                graphicBMP = TransformImage(graphicBMP);
                 //To access painBox  from another thread via delegate */  
-                paintBox.Invoke(DELInvert, new object[] { graphicBMP });
+                paintBox.Invoke(DELImage, new object[] { graphicBMP });
                 basicpicture = paintBox.Image;
                 
                 //To access load gif from another thread via delegate */                           
-                loadGif.Invoke(DELMain); 
+                loadGif.Invoke(DELGif); 
 
 
             });
@@ -407,7 +427,7 @@ namespace GraphicEditor
 
         }
 
-        public Bitmap Transform(Bitmap source)
+        public Bitmap TransformImage(Bitmap source)
         {
 
             Thread.Sleep(5000);
